@@ -9,3 +9,5 @@
    >   > > "Your branch is behind 'origin/main' by 1 commit, and can be fast-forwarded.
    > - `git pull` (pull the changes from the remote repository to your local repo)
    > - run `git status` again to see if the pull wass successful.
+   >   > > read the console and you will find this message:
+   >   > > Your branch is up to date with 'origin/main'. `note: "origin/<main>"` may vary on which branch you are woirking on.
