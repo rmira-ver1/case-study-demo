@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: CI
 
 on:
@@ -16,17 +14,19 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
-      - name: ssh-keygen
+      - name: Set up SSH keys
         run: |
+          mkdir -p /home/runner/.ssh
           ssh-keygen -t rsa -b 4096 -C "id_rsa" -f /home/runner/.ssh/id_rsa -N ""
           ssh-keygen -t rsa -b 4096 -C "ansible" -f /home/runner/.ssh/ansible -N ""
 
       - name: Copy public key to bastion host
         run: |
+          ssh-keyscan -H bastion-1.acad.opswerks.net >> /home/runner/.ssh/known_hosts
           ssh-copy-id -i /home/runner/.ssh/id_rsa rmira@bastion-1.acad.opswerks.net
 
-      - name: ssh into machine
-        run: ssh rmira@bastion-1.acad.opswerks.net
+      - name: SSH into machine
+        run: ssh -o StrictHostKeyChecking=no rmira@bastion-1.acad.opswerks.net
 
-      - name: print working directory
+      - name: Print working directory
         run: pwd
