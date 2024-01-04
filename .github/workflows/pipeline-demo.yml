@@ -21,8 +21,7 @@ jobs:
           chmod 700 /home/runner/.ssh
           chmod 600 /home/runner/.ssh/id_rsa
           chmod 644 /home/runner/.ssh/id_rsa.pub
-          chmod 644 /home/runner/.ssh/known_hosts
-
+          chmod 600 /home/runner/.ssh/known_hosts  # Updated this line
 
       - name: Copy public key to bastion host
         run: |
