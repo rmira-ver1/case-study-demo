@@ -20,3 +20,13 @@ jobs:
         run: |
           ssh-keygen -t rsa -b 4096 -C "id_rsa" -f /home/runner/.ssh/id_rsa -N ""
           ssh-keygen -t rsa -b 4096 -C "ansible" -f /home/runner/.ssh/ansible -N ""
+
+      - name: Copy public key to bastion host
+        run: |
+          ssh-copy-id -i /home/runner/.ssh/id_rsa rmira@bastion-1.acad.opswerks.net
+
+      - name: ssh into machine
+        run: ssh rmira@bastion-1.acad.opswerks.net
+
+      - name: print working directory
+        run: pwd
